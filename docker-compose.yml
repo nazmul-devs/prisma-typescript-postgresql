@@ -1,0 +1,37 @@
+version: "3.9"
+services:
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env.docker
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+    command: sh -c "
+      npx prisma generate &&
+      npx prisma migrate deploy &&
+      npx prisma db seed &&
+      npm run build &&
+      npm start"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: prisma-microservice
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

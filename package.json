@@ -1,0 +1,42 @@
+{
+  "name": "prisma-microservice",
+  "version": "1.0.0",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "nodemon dist/server.js",
+    "clean": "rimraf dist",
+    "build": "npm run clean && tsc",
+    "start": "node dist/server.js",
+    "prisma": "prisma",
+    "seed:prod": "node dist/prisma/seeds.js"
+  },
+  "prisma": {
+    "schema": "./prisma",
+    "seed": "node ./prisma/seeds.ts"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^4.17.23",
+    "@types/morgan": "^1.9.10",
+    "@types/node": "^20.19.1",
+    "nodemon": "^3.1.10",
+    "prisma": "^6.10.1",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.8.3"
+  },
+  "keywords": [],
+  "author": "Nazmul Hosen",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@prisma/client": "^6.10.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.5.1",
+    "glob": "^11.0.3",
+    "helmet": "^8.1.0",
+    "morgan": "^1.10.0",
+    "zod": "^3.25.67"
+  }
+}

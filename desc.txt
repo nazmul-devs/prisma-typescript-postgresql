@@ -1,0 +1,124 @@
+/*
+ * Boilerplate for Large Scale Application
+ * Tech Stack: Node.js, Express.js, TypeScript, PostgreSQL, Prisma, Docker
+ */
+
+
+
+
+
+
+Rebuild from scratch
+- docker-compose down -v
+- docker-compose build --no-cache
+- docker-compose up
+- docker-compose up -d // Run in Background (Production)
+- docker-compose logs -f // view logs
+
+
+
+
+
+
+
+
+
+
+
+
+// File structure:
+// ├── prisma/
+// │   └── schema.prisma
+// ├── src/
+// │   ├── config/
+// │   │   └── env.ts
+// │   ├── modules/
+// │   │   └── user/
+// │   │       ├── user.controller.ts
+// │   │       ├── user.service.ts
+// │   │       ├── user.route.ts
+// │   │       └── user.schema.ts
+// │   ├── utils/
+// │   │   └── api-response.ts
+// │   ├── app.ts
+// │   └── server.ts
+// ├── docker-compose.yml
+// ├── Dockerfile
+// ├── .env
+// ├── .gitignore
+// ├── package.json
+// └── tsconfig.json
+
+
+====== cmd =========
+docker-compose down -v   # stop and remove containers + volumes
+docker system prune -af  # clean up dangling images, volumes, caches
+docker-compose up --build
+
+
+========== docker ===========
+Build and Run with Docker Compose
+In the project root:
+
+docker-compose up --build
+
+This will:
+
+Build your app container from Dockerfile
+
+Start the PostgreSQL container
+
+Wait for DB
+
+Run Prisma generate, migrate, seed
+
+Build TypeScript
+
+Start server
+
+🐳 3. Verify It’s Working
+Open your browser:
+
+
+http://localhost:5000/
+
+http://localhost:5000/health
+
+🧼 4. Stop Containers
+docker-compose down
+This stops and removes the containers.
+
+🔁 5. Rebuild After Code Changes
+If you make code or dependency changes, rebuild:
+
+docker-compose down
+docker-compose up --build
+Or for a clean reset:
+
+docker system prune -af
+🚀 Bonus: Run in Background (Production)
+
+docker-compose up --build -d
+This runs it in detached mode (in the background).
+
+To view logs:
+
+docker-compose logs -f
+======== end docker ===============
+
+
+
+// docker
+docker-compose up --build
+http://localhost:5000/health
+docker-compose down
+docker-compose up --build
+docker system prune -af
+docker-compose up --build -d
+
+
+
+
+
+
+
